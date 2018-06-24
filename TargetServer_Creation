@@ -1,0 +1,18 @@
+#!/bin/bash
+target_json=$(<targets.json);
+
+function createTarget {
+response=$(curl -s --request POST --header "Content-Type: application/json" --header "Authorization: Basic dmFpc2g5Mi5jYmVAZ21haWwuY29tOldpbmRvd3NAMQ==" -d "${target_json}" "https://api.enterprise.apigee.com/v1/organizations/vaish92cbe-eval/environments/test/targetservers" "https://api.enterprise.apigee.com/v1/organizations/vaish92cbe-eval/environments/prod/targetservers")
+}
+
+python -mjson.tool  "targets.json" &>/dev/null &&  
+createTarget || 
+echo "No Target Server created since the JSON is invalid";
+
+echo "$response"
+
+if [[ $response = *"messaging.config.beans.TargetServerAlreadyExists"* ]]; then
+  echo "Target Server already exists"
+else
+	echo "Target Server Created"
+fi

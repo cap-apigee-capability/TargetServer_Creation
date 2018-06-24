@@ -1,0 +1,16 @@
+{
+"host":"www.google.com",
+"isEnabled":true,
+"name":"Sample4",
+"port":443,
+"sSLInfo":{
+"ciphers":[],
+"clientAuthEnabled":"false",
+"enabled":"true",
+"ignoreValidationErrors":true,
+"keyAlias":"",
+"keyStore":"",
+"protocols":[],
+"trustStore":""
+}
+}
